@@ -1,56 +1,53 @@
 # Public Transit Ridership Forecasting and Planning Support System
 
-University project for AIES (CCP and CCA) and PAI (CCA). The project studies CTA bus route boardings and rail station entries. It will use historical simulation to classify relative ridership as Low, Normal or High.
+University project for AIES (CCP and CCA) and PAI (CCA). It studies CTA bus route boardings and rail station entries. The planned system will use historical simulation to classify relative ridership as Low, Normal or High.
 
 This is not a live CTA prediction or automatic vehicle allocation system.
 
 ## Current status
 
 - M01: Initial project structure and test setup completed.
-- M02: CTA datasets downloaded manually and filtered to the 2022–2025 date range.
-- M03: Detailed data-quality audit is pending.
+- M02: CTA datasets downloaded manually and filtered to 2022–2025.
+- M03: Data-quality audit notebook created; local results are being verified.
 
 Data cleaning, machine learning models, the FastAPI application and the React frontend are not implemented yet.
 
-## Setup and tests
+## Python environment
 
-Requirements: Python 3.10 or later and Git.
+The project uses a virtual environment stored at a short path on Windows. This helps avoid Windows path-length problems.
 
-From the project root, create a virtual environment:
-
-```bash
-python -m venv backend/.venv
-```
-
-Activate it on Windows PowerShell:
+To create the environment, if it does not already exist:
 
 ```powershell
-.\backend\.venv\Scripts\Activate.ps1
+py -3 -m venv "$env:USERPROFILE\cta-m03-venv"
 ```
 
-On macOS/Linux:
+From the project root, install the development dependencies:
 
-```bash
-source backend/.venv/bin/activate
+```powershell
+& "$env:USERPROFILE\cta-m03-venv\Scripts\python.exe" -m pip install -r backend/requirements-dev.txt
 ```
 
-Install the dependencies and run the tests:
+Verify the installation:
 
-```bash
-python -m pip install -r backend/requirements-dev.txt
-python -m pytest backend/tests -q
+```powershell
+& "$env:USERPROFILE\cta-m03-venv\Scripts\python.exe" -c "import pandas, pytest, ipykernel; print('Setup OK')"
 ```
 
-The current setup tests use Git to check that representative private and generated files are ignored. Package installation requires internet access.
+For notebooks in VS Code, select the Python interpreter from:
 
-## Dataset download and date filtering
+```text
+C:\Users\<your-username>\cta-m03-venv\Scripts\python.exe
+```
 
-Download the original CSV files manually from the official sources:
+## Dataset download and filtering
+
+Download the original CSV files manually:
 
 - [CTA Bus Routes — Daily Ridership](https://data.cityofchicago.org/Transportation/CTA-Ridership-Bus-Routes-Daily-Totals-by-Route/jyb9-n7fm)
 - [CTA Rail Station Entries — Daily Totals](https://data.cityofchicago.org/Transportation/CTA-Ridership-L-Station-Entries-Daily-Totals/5neh-572f)
 
-Save the original files in `backend/data/raw/` with these names:
+Save them in `backend/data/raw/` as:
 
 - `bus_original.csv`
 - `rail_original.csv`
@@ -58,18 +55,41 @@ Save the original files in `backend/data/raw/` with these names:
 From the project root, run:
 
 ```powershell
-.\backend\.venv\Scripts\python.exe backend/filter_cta_dates.py
+& "$env:USERPROFILE\cta-m03-venv\Scripts\python.exe" backend/filter_cta_dates.py
 ```
 
-The script selects records from 1 January 2022 through 31 December 2025 and creates:
+The script selects records from 1 January 2022 through 31 December 2025 and saves separate CSV files in `backend/data/processed/`. The original CSV files remain unchanged.
 
-- `backend/data/processed/bus_2022_2025.csv`
-- `backend/data/processed/rail_2022_2025.csv`
+If an output file already exists, the script stops instead of overwriting it.
 
-The original CSV files remain unchanged. If an output file already exists, the script will stop rather than overwrite it.
+## Data-quality audit
 
-These files are date-filtered only; the detailed data-quality audit and cleaning are still pending. Raw and processed datasets, models, virtual environments and credentials should not be committed to Git.
+Open and run:
 
-## Documentation
+```text
+backend/notebooks/M03_CTA_Data_Quality_Audit.ipynb
+```
 
-See the [project specification](docs/PROJECT_SPEC.md), [architecture](docs/ARCHITECTURE.md), [requirements matrix](docs/REQUIREMENTS_MATRIX.md) and [progress](docs/PROGRESS.md).
+Select the short-path virtual environment as the notebook kernel. The notebook checks schema, blank values, dates, duplicate records, ridership values and calendar gaps. It does not clean or modify the input CSVs.
+
+The audit report is saved to:
+
+```text
+backend/reports/m03_quality_report.json
+```
+
+If the report already exists, it is not overwritten. Move or rename the existing report before saving fresh results.
+
+Zero ridership and calendar gaps are not automatically errors.
+
+## Tests
+
+Run the M03 notebook tests:
+
+```powershell
+& "$env:USERPROFILE\cta-m03-venv\Scripts\python.exe" -m pytest backend/tests/test_audit_cta_data.py -q
+```
+
+## Git
+
+Do not commit raw or processed datasets, virtual environments, credentials or unnecessary generated files.
