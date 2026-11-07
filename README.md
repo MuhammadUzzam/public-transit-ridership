@@ -8,9 +8,10 @@ This is not a live CTA prediction or automatic vehicle allocation system.
 
 - M01: Initial project structure and test setup completed.
 - M02: CTA datasets downloaded manually and filtered to 2022–2025.
-- M03: Simplified data-quality audit notebook created; local results are being verified.
+- M03: Data-quality audit notebook created for the filtered datasets.
+- M04: Basic cleaning completed for the filtered bus and rail datasets.
 
-Data cleaning, machine learning models, the FastAPI application and the React frontend are not implemented yet.
+Exploratory data analysis, machine learning models, the FastAPI application and the React frontend are not implemented yet.
 
 ## Python environment
 
@@ -62,9 +63,9 @@ The script selects records from 1 January 2022 through 31 December 2025 and save
 
 If an output file already exists, the script stops instead of overwriting it.
 
-## Data-quality audit
+## M03: Data-quality audit
 
-Open and run:
+Open:
 
 ```text
 backend/notebooks/M03_CTA_Data_Quality_Audit.ipynb
@@ -74,11 +75,30 @@ Select the short-path virtual environment as the notebook kernel and run the cel
 
 The notebook displays an overview of both datasets and checks missing values, dates, duplicate records, ridership values and day types. It does not clean or modify the input CSVs.
 
-The results are displayed in the notebook. This version does not create or update a JSON report.
-
-Zero ridership is not automatically an error. Any potential issue should be reviewed before deciding how to handle it.
+Results are displayed in the notebook. This version does not create or update a JSON report.
 
 See [M03 Notebook Guide](docs/M03_NOTEBOOK_GUIDE.md) for more details.
+
+## M04: Data cleaning
+
+After completing M02, open:
+
+```text
+backend/notebooks/M04_CTA_Data_Cleaning.ipynb
+```
+
+Select the same notebook kernel and run the cells in order. The notebook prepares the bus and rail datasets separately. It checks essential values, converts dates and ridership to suitable formats, and removes exact duplicate rows.
+
+If essential values are invalid or different rows share the same route/station and date, the notebook stops so the issue can be investigated.
+
+Successful execution saves:
+
+- `backend/data/processed/bus_cleaned.csv`
+- `backend/data/processed/rail_cleaned.csv`
+
+Running the notebook again overwrites these cleaned output files. The filtered input CSVs remain unchanged.
+
+Zero ridership is not automatically an error and is retained.
 
 ## Git
 
