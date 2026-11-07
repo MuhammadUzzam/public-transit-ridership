@@ -8,7 +8,7 @@ This is not a live CTA prediction or automatic vehicle allocation system.
 
 - M01: Initial project structure and test setup completed.
 - M02: CTA datasets downloaded manually and filtered to 2022–2025.
-- M03: Data-quality audit notebook created; local results are being verified.
+- M03: Simplified data-quality audit notebook created; local results are being verified.
 
 Data cleaning, machine learning models, the FastAPI application and the React frontend are not implemented yet.
 
@@ -70,25 +70,15 @@ Open and run:
 backend/notebooks/M03_CTA_Data_Quality_Audit.ipynb
 ```
 
-Select the short-path virtual environment as the notebook kernel. The notebook checks schema, blank values, dates, duplicate records, ridership values and calendar gaps. It does not clean or modify the input CSVs.
+Select the short-path virtual environment as the notebook kernel and run the cells in order.
 
-The audit report is saved to:
+The notebook displays an overview of both datasets and checks missing values, dates, duplicate records, ridership values and day types. It does not clean or modify the input CSVs.
 
-```text
-backend/reports/m03_quality_report.json
-```
+The results are displayed in the notebook. This version does not create or update a JSON report.
 
-If the report already exists, it is not overwritten. Move or rename the existing report before saving fresh results.
+Zero ridership is not automatically an error. Any potential issue should be reviewed before deciding how to handle it.
 
-Zero ridership and calendar gaps are not automatically errors.
-
-## Tests
-
-Run the M03 notebook tests:
-
-```powershell
-& "$env:USERPROFILE\cta-m03-venv\Scripts\python.exe" -m pytest backend/tests/test_audit_cta_data.py -q
-```
+See [M03 Notebook Guide](docs/M03_NOTEBOOK_GUIDE.md) for more details.
 
 ## Git
 
