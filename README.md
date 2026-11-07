@@ -10,8 +10,9 @@ This is not a live CTA prediction or automatic vehicle allocation system.
 - M02: CTA datasets downloaded manually and filtered to 2022–2025.
 - M03: Data-quality audit notebook created for the filtered datasets.
 - M04: Basic cleaning completed for the filtered bus and rail datasets.
+- M05: Exploratory data analysis notebook created; local results are being verified.
 
-Exploratory data analysis, machine learning models, the FastAPI application and the React frontend are not implemented yet.
+Machine learning models, the FastAPI application and the React frontend are not implemented yet.
 
 ## Python environment
 
@@ -32,7 +33,7 @@ From the project root, install the development dependencies:
 Verify the installation:
 
 ```powershell
-& "$env:USERPROFILE\cta-m03-venv\Scripts\python.exe" -c "import pandas, pytest, ipykernel; print('Setup OK')"
+& "$env:USERPROFILE\cta-m03-venv\Scripts\python.exe" -c "import pandas, pytest, ipykernel, matplotlib; print('Setup OK')"
 ```
 
 For notebooks in VS Code, select the Python interpreter from:
@@ -99,6 +100,23 @@ Successful execution saves:
 Running the notebook again overwrites these cleaned output files. The filtered input CSVs remain unchanged.
 
 Zero ridership is not automatically an error and is retained.
+
+## M05: Exploratory data analysis
+
+After completing M04, open:
+
+```text
+backend/notebooks/M05_CTA_Exploratory_Data_Analysis.ipynb
+```
+
+Select the same notebook kernel and run the cells in order. The notebook uses the cleaned bus and rail CSV files to explore:
+
+- Dataset summaries and ridership distributions.
+- Monthly ridership trends.
+- Average ridership by day of the week.
+- Routes and stations with high average recorded ridership.
+
+The charts describe historical data. They are not live predictions, and they do not establish the causes of changes in ridership.
 
 ## Git
 
