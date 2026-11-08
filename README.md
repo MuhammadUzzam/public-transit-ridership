@@ -118,6 +118,8 @@ Select the same notebook kernel and run the cells in order. The notebook uses th
 
 The charts describe historical data. They are not live predictions, and they do not establish the causes of changes in ridership.
 
+- M06: Target labels and time-aware features prepared for bus and rail data.
+
 ## Git
 
 Do not commit raw or processed datasets, virtual environments, credentials or unnecessary generated files.
