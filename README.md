@@ -120,6 +120,8 @@ The charts describe historical data. They are not live predictions, and they do 
 
 - M06: Target labels and time-aware features prepared for bus and rail data.
 
+- M07: Baselines and classification models compared using 2024 validation data.
+
 ## Git
 
 Do not commit raw or processed datasets, virtual environments, credentials or unnecessary generated files.
