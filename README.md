@@ -122,6 +122,8 @@ The charts describe historical data. They are not live predictions, and they do 
 
 - M07: Baselines and classification models compared using 2024 validation data.
 
+- M08: Selected model and baselines evaluated on 2025 historical data.
+
 ## Git
 
 Do not commit raw or processed datasets, virtual environments, credentials or unnecessary generated files.
