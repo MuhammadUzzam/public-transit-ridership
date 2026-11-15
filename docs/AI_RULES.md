@@ -1,5 +1,7 @@
-# Project development rules
+# Development guidelines
 
-Implement one user-approved module at a time. Plan, implement, test, explain in Roman Urdu, provide Git guidance and wait for approval before the next module. Preserve unrelated work. Keep dependencies, files and code as simple as correctness permits.
-
-Do not fabricate data, results or verification. Avoid leakage, real-time claims, unnecessary databases and unapproved feature bloat. Use three-class targets and separate bus/rail evaluation. Document assumptions and actual test results.
+- Keep code understandable; preserve unrelated work and verify changes.
+- Keep bus and rail models separate and use the Normal/High target.
+- Treat predictions as historical simulations and the 91-day delay as an assumption.
+- Do not describe results as live tracking, overcrowding, capacity or automatic vehicle allocation.
+- Do not commit raw data, model files, secrets, virtual environments or installed dependencies by accident. Check already-tracked files separately from `.gitignore` rules.

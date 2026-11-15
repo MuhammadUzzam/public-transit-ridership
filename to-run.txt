@@ -1,0 +1,13 @@
+TransitPulse: run from Windows Command Prompt (CMD)
+
+Open CMD in the project root, then start the backend:
+
+"%USERPROFILE%\cta-m03-venv\Scripts\python.exe" -m uvicorn main:app --app-dir backend --reload
+
+Leave this terminal open. In a second CMD window opened in the project root:
+
+cd frontend
+node ".\node_modules\vite\bin\vite.js" --host 127.0.0.1
+
+Open the Local URL printed by Vite. Stop each server with Ctrl+C.
+See README.md and docs/SETUP.md for local notes.

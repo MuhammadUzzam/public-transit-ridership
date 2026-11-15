@@ -1,16 +1,13 @@
-# Requirements matrix
+# Requirements overview
 
-Sources: AIES CCP, AIES CCA and PAI CCA supplied by the project owner. All implementation items below are pending except initial setup.
+Based on the supplied AIES CCP, AIES CCA and PAI CCA documents. The matrix records project evidence; instructor acceptance is still required.
 
-| Requirement | Planned evidence | Status |
+| Requirement | Evidence | Status |
 | --- | --- | --- |
-| Real-world problem and objectives | Project specification and report | Planned |
-| Two relevant datasets | CTA bus and CTA rail acquisition and analysis | Planned |
-| Python, preprocessing, EDA and class imbalance | Data pipeline and EDA | Planned |
-| Baseline, multiple approaches and improvement experiment | Multiclass experiments and measured results | Planned |
-| Appropriate metrics and interpretation | Per-class metrics and evaluation | Planned |
-| User-friendly visualization | React dashboard with FastAPI | Planned |
-| Privacy, fairness and limitations | Documentation and error analysis | Planned |
-| Minimum 10-page technical report | AIES CCP and PAI deliverables | Planned |
-
-PAI's description permits one sufficiently large dataset or two datasets, while its deliverables specify two. The project plans to use two. Instructor approval for shared codebase and same-source datasets was reported by the project owner.
+| Real-world problem and datasets | CTA bus/rail data and project specification | Implemented; final write-up pending |
+| Data preprocessing and EDA | M02–M05 | Implemented |
+| Class imbalance | M06/M07 class counts and per-class metrics | Checked; interpretation should be included in report |
+| Baselines, multiple approaches and improvement | M07 comparison | Implemented for historical periods; report the actual metrics |
+| Evaluation and visualization | M05, M07 and React dashboard | Implemented; final demonstration check pending |
+| Privacy, fairness and limitations | Aggregate CTA data and documented simulation assumptions | Further discussion in report pending |
+| Technical report of at least 10 pages | AIES CCP and PAI deliverables | Pending |

@@ -1,5 +1,14 @@
-# Data contracts
+# Data and API contracts
 
-Planned sources: CTA bus daily route boardings and CTA rail daily station entries. They are different units of observation and will be modeled separately.
+- **Bus data:** daily `route`, `date`, `daytype` and `rides` (boardings).
+- **Rail data:** daily `station_id`, `stationname`, `date`, `daytype` and `rides` (station entries).
+- M02 filters 2022–2025; M04 cleans the data. M06 estimates each eligible location's thresholds from 2022 through September 2023: `High` means rides exceed the upper threshold; otherwise the valid row is `Normal`.
+- M07/M08 also read January–August 2026 from the raw CSVs. A location needs a training threshold and the requested date needs a 91-day historical record. The 91-day availability delay is assumed, not verified.
 
-Proposed common fields: `mode`, `entity_id`, `date`, `rides`; optional entity display name. Raw schema and actual quality must be verified in M02–M04. API contracts will be defined when the corresponding modules are approved.
+## API
+
+- `GET /` checks that the API is running; `GET /entities/bus` and `GET /entities/rail` return known IDs.
+- `POST /predict` accepts JSON such as `{"mode":"bus","entity_id":"1","date":"2026-06-15"}`. `mode` is `bus` or `rail`; the supported date range is 2026-01-01 through 2026-08-31.
+- A successful response includes mode, ID, date, `prediction`, `training_cutoff` and `history_cutoff`. Invalid inputs or missing required history return an error; missing model/data files return 503.
+
+Each predictor loads a model bundle, the corresponding cleaned CSV and raw CSV. Raw data, processed data and model bundles are ignored by the project Git rules.
