@@ -1,9 +1,8 @@
 # Project specification
 
-- Scope: historical CTA bus and rail ridership forecasting and planning support.
-- Approved classes: Low, Normal and High. Exact thresholds are pending data analysis.
-- Bus and rail use separate models with reusable methodology.
-- Historical simulation is approved. No real-time, capacity, overcrowding or automatic allocation claims.
-- Shared project/codebase and the two CTA datasets were approved by the instructor, as reported by the project owner.
-- Frontend: React; backend: FastAPI. Backend is developed first.
-- Current state: M01 setup; no model, dataset pipeline or application endpoints yet.
+- **Problem:** Explore changing CTA bus and rail ridership to support planning analysis.
+- **Data:** Public CTA daily bus route boardings and rail station entries.
+- **Input:** A known bus route or rail station ID and a historical date.
+- **Output:** Normal or High relative to that location's training-period threshold.
+- **System:** Separate classification models, historical baselines, FastAPI endpoints and a React dashboard.
+- **Scope:** Historical simulation only. It does not predict live crowding, vehicle capacity, schedules or automatic allocation. Practical decisions require more operational information.

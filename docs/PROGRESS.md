@@ -1,13 +1,8 @@
 # Progress
 
-## M00: Blueprint
+- **M01–M02:** Project setup, CTA data downloads and 2022–2025 filtering.
+- **M03–M05:** Data audit, cleaning and exploratory analysis.
+- **M06–M08:** Binary targets, model/baseline evaluation and historical prediction example.
+- **Application:** FastAPI endpoints and a React dashboard with historical charts and prediction forms are implemented.
 
-Discussed in conversation. Instructor approvals reported by project owner are summarized in PROJECT_SPEC.md.
-
-## M01: Initial setup
-
-Project structure, Git ignore policy, documentation skeleton and pytest test setup created. On 2026-11-06, an isolated Python 3.12.14 virtual environment installed the development requirements successfully. `python -m pytest backend/tests -q` completed with 9 passed. Git ignore checks for representative local data, models, secrets, environments and frontend build files passed. Local Git repository initialized on `main`; no commits or remote configured.
-
-## Next
-
-M02: CTA dataset acquisition, after project owner approval. Data, ML, FastAPI endpoints and React are not implemented.
+Before submission: confirm the interface and sample predictions on the target machine, review results and limitations, and complete the technical report, presentation and viva preparation. Deployment is a separate optional decision unless the instructor requires a hosted link.
